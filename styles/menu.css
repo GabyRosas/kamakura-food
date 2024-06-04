@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import './cart.css';
+:root {
+    --font-main: 'PT Sans', sans-serif;
+    --color-main: #fc3232;
+    --color-light: #ffecdb;
+}
+
+* {
+    font-family: var(--font-main);
+}
+
+p {
+    margin: 0px;
+}
+
+h5,
+h3,
+input {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5% 2%;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 260px;
+}
+
+.image-logo {
+    width: 65px;
+    height: auto;
+}
+
+.nav-link {
+    color: var(--color-main);
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.nav-link:hover {
+    color: white;
+    background-color: var(--color-main);
+    border-radius: 20px;
+}
+
+.filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px;
+}
+
+.filter,
+.add-button {
+    border: 1px solid var(--color-main);
+    border-radius: 20px;
+    padding: 5px 10px;
+    background-color: white;
+    color: grey;
+    margin: 10px;
+    font-size: 1rem;
+}
+
+.filter:hover,
+.add-button:hover {
+    background-color: var(--color-main);
+    color: white;
+}
+
+.main-container {
+    display: flex;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 75vw;
+    margin-top: 2%;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin: 1%;
+    padding: 1%;
+    text-align: center;
+    position: relative;
+}
+
+.price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+    .main-container {
+        flex-direction: column-reverse;
+    }
+    .menu-container {
+        width: 100vw;
+    }
+}
