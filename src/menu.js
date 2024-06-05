@@ -13,8 +13,25 @@ function showButtons() {
     newButton.textContent = filters[i];
     filtersContainer.appendChild(newButton);
     }
-    }
+    } 
 
+    /*
+    function showButtons() {
+        const filtersContainer = document.getElementById('filters');
+        const originalButton = filtersContainer.querySelector('.filter'); 
+        originalButton.remove();
+        
+        for (let i = 0; i < 5; i++) {
+            const newButton = document.createElement('button');
+            newButton.className = 'filter';
+            newButton.id = filters[i];
+            newButton.textContent = filters[i];
+            filtersContainer.appendChild(newButton);
+        }
+    }
+    */
+    
+    
 
 //DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
 
