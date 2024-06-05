@@ -2,5 +2,6 @@
 
 import { showButtons } from "./menu.js";
 
-let shButton = document.getElementById("filters");
-shButton.addEventListener("click", showButtons)
+document.addEventListener('DOMContentLoaded',(event) =>{
+showButtons();
+});

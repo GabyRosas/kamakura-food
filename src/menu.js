@@ -2,24 +2,19 @@ import { filters } from "../assets/data/data.js";
 
 //DEBE imprimir en pantalla la información de filtros.
 
-const menuButtons = document.getElementById("filters");
-const filtersContainer = document.querySelector("filters-container");
-const nameButton = document.querySelector("filters");
+const filtersContainer = document.querySelector('.filters-container'); //contenedor de los botones
+const originalButton = filtersContainer.querySelector('.filter'); 
 
-function showButtons(filters) {
-     
-    for (let i = 0; i<filters.length; i++){
+function showButtons() {
+    //originalButton.textContent = "todos"; 
+    originalButton.remove();
+    for (let i = 0; i < 5; i++) {
+    const newButton = originalButton.cloneNode(true);
+    newButton.textContent = filters[i];
+    filtersContainer.appendChild(newButton);
+    }
+    }
 
-        const menuButton = filtersContainer.createElement("button");
-        nameButton.innerHTML = filters[i]; 
-        console.log(nameButton)
-
-        menuButtons.appendChild(menuButton)
-        console.log(filter[i])
-    }   
-
-}
-showButtons(filters); 
 
 //DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
 
