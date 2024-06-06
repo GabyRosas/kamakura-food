@@ -19,9 +19,7 @@ const cartProductName = document.querySelector(".text-container").children[0];
 const cartSubtotal = document.querySelector(".text-container").children[1];
  */
 
-
-export function addToCart (name, price) {
-
+function createCartItem (name, price) {
     const cartProductContainer = document.createElement("div");
     cartProductContainer.className = "cart-container";
     cartProductContainer.innerHTML = `
@@ -36,8 +34,11 @@ export function addToCart (name, price) {
                             <button>-</button>
                         </div>`
     cartProductsContainer.appendChild(cartProductContainer)
+}
 
+export function addToCart (name, price) {
 
+    createCartItem(name, price)
     
     //Condicion - comprobar que que no esta y anadir
 
