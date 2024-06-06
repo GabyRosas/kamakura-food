@@ -22,7 +22,10 @@ function addProductContainer (array) {
         const addButton = document.createElement("button");
         addButton.className = "add-button";
         addButton.innerText = "Añadir";
-
+        /* addButton.onclick = function (e) {
+            console.log(array[i].name);
+        };
+ */
         allProductsContainer.appendChild(productContainer);
         productContainer.appendChild(productNameContainer);
         productContainer.appendChild(productDescriptionContainer);
