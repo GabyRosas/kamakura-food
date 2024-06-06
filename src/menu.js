@@ -1,4 +1,5 @@
 import {filters} from "../assets/data/data.js"
+import {addToCart} from "./cart.js"
 
 //DEBE imprimir en pantalla la información de filtros.
 
@@ -22,10 +23,11 @@ function addProductContainer (array) {
         const addButton = document.createElement("button");
         addButton.className = "add-button";
         addButton.innerText = "Añadir";
-        /* addButton.onclick = function (e) {
+        addButton.onclick = function (e) {
             console.log(array[i].name);
+            addToCart(array[i].name, array[i].price)
         };
- */
+
         allProductsContainer.appendChild(productContainer);
         productContainer.appendChild(productNameContainer);
         productContainer.appendChild(productDescriptionContainer);
