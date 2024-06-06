@@ -8,6 +8,8 @@ const productContainer = document.querySelector(".product-container");
 const productNameContainer = document.querySelector(".product-container").children[0];
 const productDescriptionContainer = document.querySelector(".product-container").children[1];
 const productPriceContainer = document.querySelector(".price-container").children[0];
+const filtersContainer = document.querySelector('.filters-container'); //contenedor de los botones
+const originalButton = filtersContainer.querySelector('.filter'); 
 
 function changeExampleCard () {
     productNameContainer.innerText = products[0].name;
@@ -32,3 +34,15 @@ function addProductContainer (array) {
 }
 
 addProductContainer(products)
+
+
+function showButtons() {
+    originalButton.remove();
+    for (let i = 0; i < 5; i++) {
+      const newButton = originalButton.cloneNode(true);
+      newButton.textContent = filters[i];
+      filtersContainer.appendChild(newButton);
+    }
+} 
+
+export { showButtons }
