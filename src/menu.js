@@ -9,7 +9,7 @@ const filtersContainer = document.querySelector('.filters-container'); //contene
 const originalButton = filtersContainer.querySelector('.filter'); 
 
 function addProductContainer (array) {
-    
+    emptyProductsContainer();
     for (let i = 0; i < array.length; i++) {
 
         const productContainer = document.createElement("div");
@@ -34,9 +34,11 @@ function addProductContainer (array) {
         productDescriptionContainer.innerText = array[i].description;
         productPriceValue.innerText = `${array[i].price} €`; 
     }
-
 }
 
+function emptyProductsContainer() {
+    allProductsContainer.querySelectorAll('*').forEach(child => child.remove());
+}
 
 function showButtons() {
     
