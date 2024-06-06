@@ -1,5 +1,6 @@
 import { products } from "../assets/data/data.js";
 import { addProductContainer } from "./menu.js"
+
 //DEBE buscar los productos por los filtros
 
 function activateFilter(e) {
