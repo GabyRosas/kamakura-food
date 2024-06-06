@@ -1,5 +1,6 @@
 import { products } from "../assets/data/data.js";
-import { addProductContainer } from "../assets/data/menu.js"
+import { addProductContainer } from "./menu.js"
+
 //DEBE buscar los productos por los filtros
 
 function activateFilter(e) {
@@ -9,7 +10,7 @@ function activateFilter(e) {
 }
 
 function filterProducts(cat) {
-    let filteredProducts = products.filter( p => p.category.includes(cat));
+    let filteredProducts = products.filter( prod => cat == "todos" ? prod : prod.category.includes(cat));
     return filteredProducts;
 }
 
