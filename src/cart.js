@@ -2,6 +2,18 @@
 
 console.log("hi")
 
+function openCart() {
+    let showCart = document.getElementById("cart-container");
+
+    console.log(showCart);
+
+    if (showCart.style.display == "flex"){
+    showCart.style.display = "none"
+    } else {
+    showCart.style.display = "flex"
+    }
+};
+
 const cartProductsContainer = document.getElementById("cart-products");
 const cart = [];
 
@@ -47,4 +59,4 @@ export function addToCart (id, name, price) {
     }
 }
 
-
+export{openCart}

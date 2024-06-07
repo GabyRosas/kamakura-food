@@ -23,7 +23,7 @@
 }
 
 #cart-container {
-    /* display: none; */
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 25vw;
