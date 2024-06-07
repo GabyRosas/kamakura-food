@@ -24,8 +24,7 @@ function createCartProduct (id, name, price) {
     closeImage.src = "./assets/img/close.svg";
     closeImage.alt = "close";
     closeButton.onclick = function (e) {
-        console.log("cerrado")
-        //Aqui va la funcion de cerrar
+        deleteCartItem(id)
         };
 
     const textContainer = document.createElement("div");
@@ -79,5 +78,12 @@ export function addToCart (id, name, price) {
     }
 }
 
+function deleteCartItem (id) {
+    let positionThisProductInCart = cart.findIndex((value) => value.id == id);
+    let cartProductContainer = document.querySelector(".cart-container");
 
+    cart.splice(positionThisProductInCart, 1);
+    cartProductsContainer.removeChild(cartProductContainer);
+
+}
 
