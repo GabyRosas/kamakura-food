@@ -14,25 +14,16 @@ function addProductContainer (array) {
 
         const productContainer = document.createElement("div");
         productContainer.className = "product-container";
-        const productNameContainer = document.createElement("h3");
-        const productDescriptionContainer = document.createElement("p");
-        const productPriceContainer = document.createElement("div");
-        productPriceContainer.className = "price-container";
-        const productPriceValue = document.createElement("h5");
-        const addButton = document.createElement("button");
-        addButton.className = "add-button";
-        addButton.innerText = "Añadir";
-
+        productContainer.innerHTML = `
+                    <h3>${array[i].name}</h3>
+                    <p>${array[i].description}</p>
+                <div class="price-container">
+                        <h5>${array[i].price} €</h5>
+                        <button class="add-button" onclick="function (e) {
+            addToCart(array[i].id, array[i].name, array[i].price)
+        }">Añadir</button>
+                </div>`
         allProductsContainer.appendChild(productContainer);
-        productContainer.appendChild(productNameContainer);
-        productContainer.appendChild(productDescriptionContainer);
-        productContainer.appendChild(productPriceContainer);
-        productPriceContainer.appendChild(productPriceValue);
-        productPriceContainer.appendChild(addButton);
-    
-        productNameContainer.innerText = array[i].name;
-        productDescriptionContainer.innerText = array[i].description;
-        productPriceValue.innerText = `${array[i].price} €`; 
     }
 }
 
