@@ -19,7 +19,9 @@ function addProductContainer (array) {
                     <p>${array[i].description}</p>
                 <div class="price-container">
                         <h5>${array[i].price} €</h5>
-                        <button class="add-button">Añadir</button>
+                        <button class="add-button" onclick="function (e) {
+            addToCart(array[i].id, array[i].name, array[i].price)
+        }">Añadir</button>
                 </div>`
         allProductsContainer.appendChild(productContainer);
     }
