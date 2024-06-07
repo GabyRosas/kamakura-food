@@ -1,25 +1,21 @@
 //DEBE contener las funcionalidades del carrito de compras.
 
-//import { addProductContainer } from "./menu.js"
-
-//Exportar event listener a su fichero
-
-import { products } from "../assets/data/data.js"
-
 console.log("hi")
 
-/* const addButton = document.querySelectorAll(".add-button");
-console.log(addButton) */
-
 const cartProductsContainer = document.getElementById("cart-products");
+const cart = [];
 
-/* const cartProduct = document.querySelector(".cart-container");
-const cartTextContainer = document.querySelector(".text-container");
-const cartProductName = document.querySelector(".text-container").children[0];
-const cartSubtotal = document.querySelector(".text-container").children[1];
- */
+function createCartItem (id, name, price) {
+    const cartItem = {
+        id,
+        name,
+        price,
+        quantity: 1
+    }
+    cart.push(cartItem)
+}
 
-function createCartItem (name, price) {
+function createCartProduct (id, name, price) {
     const cartProductContainer = document.createElement("div");
     cartProductContainer.className = "cart-container";
     cartProductContainer.innerHTML = `
@@ -33,17 +29,22 @@ function createCartItem (name, price) {
                             <p class="quantity">1</p>
                             <button>-</button>
                         </div>`
-    cartProductsContainer.appendChild(cartProductContainer)
+    cartProductsContainer.appendChild(cartProductContainer);
+
+    createCartItem(id, name, price);
 }
 
-export function addToCart (name, price) {
 
-    createCartItem(name, price)
-    
-    //Condicion - comprobar que que no esta y anadir
-
-    //else llamar la funcion de aumentar
-
+export function addToCart (id, name, price) {
+    let positionThisProductInCart = cart.findIndex((value) => value.id == id);
+    if (cart.length <= 0) {
+        createCartProduct(id, name, price)
+    } else if (positionThisProductInCart < 0) {
+        createCartProduct(id, name, price)
+    } else {
+     // llamar la funcion de aumentar
+        console.log("works")
+    }
 }
 
-//addToCart()
+

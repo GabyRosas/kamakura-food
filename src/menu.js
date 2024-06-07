@@ -5,7 +5,7 @@ import {addToCart} from "./cart.js"
 
 //DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
 
-const allProductsContainer = document.getElementById("products");
+export const allProductsContainer = document.getElementById("products");
 const filtersContainer = document.querySelector('.filters-container'); //contenedor de los botones
 const originalButton = filtersContainer.querySelector('.filter'); 
 
@@ -24,8 +24,7 @@ function addProductContainer (array) {
         addButton.className = "add-button";
         addButton.innerText = "Añadir";
         addButton.onclick = function (e) {
-            console.log(array[i].name);
-            addToCart(array[i].name, array[i].price)
+            addToCart(array[i].id, array[i].name, array[i].price)
         };
 
         allProductsContainer.appendChild(productContainer);
