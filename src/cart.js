@@ -30,24 +30,58 @@ function createCartItem (id, name, price) {
 function createCartProduct (id, name, price) {
     const cartProductContainer = document.createElement("div");
     cartProductContainer.className = "cart-container";
-    cartProductContainer.innerHTML = `
-    <button class="close-button"><img src="./assets/img/close.svg" alt="close"></button>
-                        <div class="text-container">
-                            <h3>${name}</h3>
-                            <h5>${price} €</h5>
-                        </div>
-                        <div class="quantity-container" id="quantity">
-                            <button>+</button>
-                            <p class="quantity">1</p>
-                            <button>-</button>
-                        </div>`
+    const closeButton = document.createElement("button");
+    closeButton.className = "close-button";
+    const closeImage = document.createElement("img");
+    closeImage.src = "./assets/img/close.svg";
+    closeImage.alt = "close";
+    closeButton.onclick = function (e) {
+        console.log("cerrado")
+        //Aqui va la funcion de cerrar
+        };
+
+    const textContainer = document.createElement("div");
+    textContainer.className = "text-container";
+    const cartProductName = document.createElement("h3");
+    const cartProductPrice =  document.createElement("h5");
+
+    const quantityContainer = document.createElement("div");
+    quantityContainer.className = "quantity-container";
+    const plusButton = document.createElement("button");
+    
+    plusButton.innerText = "+";
+    plusButton.onclick = function (e) {
+        console.log("sumado")
+        //Aqui va la funcion de sumar
+        };
+    const quantity = document.createElement("p");
+    quantity.innerText = "1";
+    quantity.className = "quantity";
+
+    const minusButton = document.createElement("button");
+    minusButton.innerText = "-";
+    minusButton.onclick = function (e) {
+        console.log("restado")
+        //Aqui va la funcion de restar
+        };
+
     cartProductsContainer.appendChild(cartProductContainer);
+    cartProductContainer.append(closeButton, textContainer, quantityContainer);
+    closeButton.appendChild(closeImage);
+    textContainer.append(cartProductName, cartProductPrice);
+    quantityContainer.append(plusButton, quantity, minusButton);
+
+    cartProductName.innerText = name;
+    cartProductPrice.innerText = `${price} €`;
 
     createCartItem(id, name, price);
+
 }
 
 
 export function addToCart (id, name, price) {
+    let startText = document.getElementById('cart-products').children[0];
+    startText.style.display = "none";
     let positionThisProductInCart = cart.findIndex((value) => value.id == id);
     if (cart.length <= 0) {
         createCartProduct(id, name, price)
@@ -58,5 +92,6 @@ export function addToCart (id, name, price) {
         console.log("works")
     }
 }
+
 
 export{openCart}
