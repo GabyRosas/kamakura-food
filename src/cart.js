@@ -1,4 +1,3 @@
-import {addIncDecEvents} from "./events.js"
 //DEBE contener las funcionalidades del carrito de compras.
 
 function openCart() {
@@ -92,6 +91,7 @@ function changeQuantity(e) {
     let quantity = 0;
     //coge quantity
     //se suma o se resta uno
+    
     //si quantity queda a 0 llama a función quitar del cart
     if (quantity <= 0) {
         deleteFromCart(e.target)
@@ -100,7 +100,7 @@ function changeQuantity(e) {
     else {
         subtotal = subTotals(price, subtotal, operator);
     }
-    //llama función que actualiza el precio
+    //llama función que actualiza el precio]
     updateSubtotal(subtotal);
     //llama función que actualiza cantidad
     updateQuantity(quantity);
