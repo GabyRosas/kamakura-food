@@ -68,6 +68,8 @@ function createCartProduct (id, name, price) {
 
 
 export function addToCart (id, name, price) {
+    let startText = document.getElementById('cart-products').children[0];
+    startText.style.display = "none";
     let positionThisProductInCart = cart.findIndex((value) => value.id == id);
     if (cart.length <= 0) {
         createCartProduct(id, name, price)
