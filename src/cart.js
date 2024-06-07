@@ -1,3 +1,4 @@
+import {addIncDecEvents} from "./events.js"
 //DEBE contener las funcionalidades del carrito de compras.
 
 function openCart() {
