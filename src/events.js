@@ -1,7 +1,7 @@
 //Intenta separar los eventos en este archivo.
 import { showButtons, addProductContainer } from "./menu.js";
 import { activateFilter } from "./searcher.js";
-import {openCart} from "./cart.js";
+import { openCart, changeQuantity } from "./cart.js";
 import { products } from "../assets/data/data.js"
 
 const filters = document.getElementsByClassName("filter");
@@ -23,3 +23,8 @@ function addCartEvent(){
     let buttonCart = document.getElementById("cart");
         buttonCart.addEventListener("click", openCart);
     }
+    
+/*function addIncDecEvents() {
+    let botones = document.getElementsByClassName("CLASE")
+    btn.addEventListener("click", changeQuantity())
+}*/

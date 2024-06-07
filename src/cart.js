@@ -1,12 +1,7 @@
 //DEBE contener las funcionalidades del carrito de compras.
 
-console.log("hi")
-
 function openCart() {
     let showCart = document.getElementById("cart-container");
-
-    console.log(showCart);
-
     if (showCart.style.display == "flex"){
     showCart.style.display = "none"
     } else {
@@ -75,9 +70,7 @@ function createCartProduct (id, name, price) {
     cartProductPrice.innerText = `${price} €`;
 
     createCartItem(id, name, price);
-
 }
-
 
 export function addToCart (id, name, price) {
     let startText = document.getElementById('cart-products').children[0];
@@ -93,5 +86,25 @@ export function addToCart (id, name, price) {
     }
 }
 
+function changeQuantity(e) {
+    let operator = e.target.innerText;
+    let quantity = 0;
+    //coge quantity
+    //se suma o se resta uno
+    //si quantity queda a 0 llama a función quitar del cart
+    if (quantity <= 0) {
+        deleteFromCart(e.target)
+    }
+    //else llama a la función de crear subtotal mandando operator, subtotal y price
+    else {
+        subtotal = subTotals(price, subtotal, operator);
+    }
+    //llama función que actualiza el precio
+    updateSubtotal(subtotal);
+    //llama función que actualiza cantidad
+    updateQuantity(quantity);
+    //llama función que actualiza el total de todos los platos
+    updateTotal(total);
+}
 
-export{openCart}
+export { changeQuantity, openCart }
