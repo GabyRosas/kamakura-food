@@ -1,38 +1,47 @@
-import {filters, products} from "../assets/data/data.js"
+import {filters} from "../assets/data/data.js"
+import {addToCart} from "./cart.js"
 
 //DEBE imprimir en pantalla la información de filtros.
 
 //DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
 
-const allProductsContainer = document.getElementById("products");
-const productContainer = document.querySelector(".product-container");
-const productNameContainer = document.querySelector(".product-container").children[0];
-const productDescriptionContainer = document.querySelector(".product-container").children[1];
-const productPriceContainer = document.querySelector(".price-container").children[0];
-
+export const allProductsContainer = document.getElementById("products");
 const filtersContainer = document.querySelector('.filters-container'); //contenedor de los botones
 const originalButton = filtersContainer.querySelector('.filter'); 
 
-function changeExampleCard () {
-    productNameContainer.innerText = products[0].name;
-    productDescriptionContainer.innerText = products[0].description;
-    productPriceContainer.innerText = `${products[0].price} €`;
-}
-
-
 function addProductContainer (array) {
+    emptyProductsContainer();
+    for (let i = 0; i < array.length; i++) {
+
+        const productContainer = document.createElement("div");
+        productContainer.className = "product-container";
+        const productNameContainer = document.createElement("h3");
+        const productDescriptionContainer = document.createElement("p");
+        const productPriceContainer = document.createElement("div");
+        productPriceContainer.className = "price-container";
+        const productPriceValue = document.createElement("h5");
+        const addButton = document.createElement("button");
+        addButton.className = "add-button";
+        addButton.innerText = "Añadir";
+        addButton.onclick = function (e) {
+            addToCart(array[i].id, array[i].name, array[i].price)
+        };
+
+        allProductsContainer.appendChild(productContainer);
+        productContainer.appendChild(productNameContainer);
+        productContainer.appendChild(productDescriptionContainer);
+        productContainer.appendChild(productPriceContainer);
+        productPriceContainer.appendChild(productPriceValue);
+        productPriceContainer.appendChild(addButton);
     
-    changeExampleCard();
-    
-    for (let i = 1; i < array.length; i++) {
-        
-        const productContainerCopy = productContainer.cloneNode(true);
-        allProductsContainer.appendChild(productContainerCopy);    
-        
         productNameContainer.innerText = array[i].name;
         productDescriptionContainer.innerText = array[i].description;
-        productPriceContainer.innerText = `${array[i].price} €`;
+        productPriceValue.innerText = `${array[i].price} €`; 
     }
+}
+
+function emptyProductsContainer() {
+    allProductsContainer.querySelectorAll('*').forEach(child => child.remove());
 }
 
 function showButtons() {
