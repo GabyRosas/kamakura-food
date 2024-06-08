@@ -1,4 +1,6 @@
 //DEBE contener las funcionalidades del carrito de compras.
+const cartProductsContainer = document.getElementById("cart-products");
+const cart = [];
 
 function openCart() {
     let showCart = document.getElementById("cart-container");
@@ -9,20 +11,20 @@ function openCart() {
     }
 };
 
-const cartProductsContainer = document.getElementById("cart-products");
-const cart = [];
-
-function createCartItem (id, name, price) {
+function createCartItem (id, name, price, subtotal) {
     const cartItem = {
         id,
         name,
         price,
-        quantity: 1
+        quantity: 1,
+        subtotal
     }
     cart.push(cartItem)
+    return cart[cart.length-1]
 }
 
 function createCartProduct (id, name, price) {
+    let newItem = createCartItem(id, name, price, price);
     const cartProductContainer = document.createElement("div");
     cartProductContainer.className = "cart-container";
     const closeButton = document.createElement("button");
@@ -31,8 +33,8 @@ function createCartProduct (id, name, price) {
     closeImage.src = "./assets/img/close.svg";
     closeImage.alt = "close";
     closeButton.onclick = function (e) {
-        console.log("cerrado")
-        //Aqui va la funcion de cerrar
+        console.log("eliminado")
+        //Aqui va la funcion de eliminar
         };
 
     const textContainer = document.createElement("div");
@@ -46,8 +48,7 @@ function createCartProduct (id, name, price) {
     
     plusButton.innerText = "+";
     plusButton.onclick = function (e) {
-        console.log("sumado")
-        //Aqui va la funcion de sumar
+            changeQuantity(e, newItem)
         };
     const quantity = document.createElement("p");
     quantity.innerText = "1";
@@ -56,8 +57,7 @@ function createCartProduct (id, name, price) {
     const minusButton = document.createElement("button");
     minusButton.innerText = "-";
     minusButton.onclick = function (e) {
-        console.log("restado")
-        //Aqui va la funcion de restar
+            changeQuantity(e, newItem)
         };
 
     cartProductsContainer.appendChild(cartProductContainer);
@@ -68,8 +68,6 @@ function createCartProduct (id, name, price) {
 
     cartProductName.innerText = name;
     cartProductPrice.innerText = `${price} €`;
-
-    createCartItem(id, name, price);
 }
 
 export function addToCart (id, name, price) {
@@ -81,31 +79,54 @@ export function addToCart (id, name, price) {
     } else if (positionThisProductInCart < 0) {
         createCartProduct(id, name, price)
     } else {
-     // llamar la funcion de aumentar
-        console.log("works")
+        cart[positionThisProductInCart].quantity++;
+        let thisProductContainer = cartProductsContainer.children[positionThisProductInCart+1];
+        updateQuantity(cart[positionThisProductInCart].quantity, thisProductContainer);
     }
 }
 
-function changeQuantity(e) {
+function changeQuantity(e, item) {
     let operator = e.target.innerText;
-    let quantity = 0;
-    //coge quantity
-    //se suma o se resta uno
-    
-    //si quantity queda a 0 llama a función quitar del cart
-    if (quantity <= 0) {
+    item.quantity = calcQuantity(item, operator);
+    if (item.quantity <= 0) {
         deleteFromCart(e.target)
+    } else {
+        let positionThisProductInCart = cart.findIndex((prod) => prod.id == item.id) + 1;
+        let thisProductContainer = cartProductsContainer.children[positionThisProductInCart];
+        item.subtotal = subTotals(item.price, item.subtotal, operator);
+        updateSubtotal(item.subtotal, thisProductContainer);
+        updateQuantity(item.quantity, thisProductContainer);
+        updateTotal(item.price, operator);
     }
-    //else llama a la función de crear subtotal mandando operator, subtotal y price
-    else {
-        subtotal = subTotals(price, subtotal, operator);
-    }
-    //llama función que actualiza el precio]
-    updateSubtotal(subtotal);
-    //llama función que actualiza cantidad
-    updateQuantity(quantity);
-    //llama función que actualiza el total de todos los platos
-    updateTotal(total);
 }
 
+function calcQuantity(item, operator) {
+    if (operator == "+") {
+        item.quantity++;
+    } else {
+        item.quantity--;
+    }
+    return item.quantity;
+}
+
+function updateSubtotal(subtotal, container) {
+    container.querySelector('h5').innerText = `${subtotal} €`;
+}
+
+function updateQuantity(quantity, container) {
+    container.querySelector('.quantity').innerText = quantity;
+}
+
+function updateTotal(price, operator) {
+    //TODO: le llega el precio del producto que se ha eliminado o añadido y el operador para saber si se suma o se resta
+    // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
+}
+
+function subTotals(price, subtotal, operator) {
+    if (operator == "+") {
+        return subtotal + price;
+    }  else {
+        return subtotal - price;
+    }  
+}
 export { changeQuantity, openCart }

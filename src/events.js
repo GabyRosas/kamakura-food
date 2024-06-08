@@ -21,10 +21,6 @@ function addFilterEvents(){
 
 function addCartEvent(){
     let buttonCart = document.getElementById("cart");
-        buttonCart.addEventListener("click", openCart);
-    }
-    
-/*function addIncDecEvents() {
-    let botones = document.getElementsByClassName("CLASE")
-    btn.addEventListener("click", changeQuantity())
-}*/
+    buttonCart.addEventListener("click", openCart);
+}
+
