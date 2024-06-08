@@ -119,4 +119,6 @@ function updateTotal(price, operator) {
     // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
 }
 
+
+
 export { changeQuantity, openCart }
