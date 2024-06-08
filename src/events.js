@@ -1,7 +1,7 @@
 //Intenta separar los eventos en este archivo.
 import { showButtons, addProductContainer } from "./menu.js";
 import { activateFilter } from "./searcher.js";
-import { payOrder /* closeModal */ } from "./receipt.js";
+import { payOrder } from "./receipt.js";
 import { openCart, changeQuantity } from "./cart.js";
 import { products } from "../assets/data/data.js"
 
@@ -27,8 +27,7 @@ function addCartEvent(){
 }
 
 function addPayButtonEvent() {
-    let payButton = document.querySelector(".nav-link");
-    //let payButton = document.getElementById("pay-button");
+    let payButton = document.getElementById("pay-button");
     payButton.addEventListener("click", payOrder);
 }
 
