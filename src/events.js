@@ -1,7 +1,7 @@
 //Intenta separar los eventos en este archivo.
 import { showButtons, addProductContainer } from "./menu.js";
 import { activateFilter } from "./searcher.js";
-import {openCart} from "./cart.js";
+import { openCart, changeQuantity } from "./cart.js";
 import { products } from "../assets/data/data.js"
 
 const filters = document.getElementsByClassName("filter");
@@ -21,5 +21,6 @@ function addFilterEvents(){
 
 function addCartEvent(){
     let buttonCart = document.getElementById("cart");
-        buttonCart.addEventListener("click", openCart);
-    }
+    buttonCart.addEventListener("click", openCart);
+}
+
