@@ -2,7 +2,7 @@
 import { showButtons, addProductContainer } from "./menu.js";
 import { activateFilter } from "./searcher.js";
 import {openCart } from "./cart.js";
-import {openReceipt} from "./receipt.js";
+import {openReceipt, emptyCart} from "./receipt.js";
 import { products } from "../assets/data/data.js"
 
 const filters = document.getElementsByClassName("filter");
@@ -32,8 +32,6 @@ function addCartEvent(){
 function addReceiptEvent() {
     buttonProceedPay.addEventListener("click", openReceipt);
     buttonClose.addEventListener("click", openReceipt);
+    buttonProceedPay.addEventListener("click", emptyCart);
 }
-
-
-
 
