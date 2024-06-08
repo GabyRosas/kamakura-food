@@ -3,7 +3,7 @@
 ### Index
 1. General Information
 2. Project Status
-3. Project's benchmark
+3. Project's expected result
 4. Technologies
 5. Bugs' report
 
@@ -22,7 +22,7 @@ If you have any questions, feel free to contact us!
 
 ## 2. Project Status
 ***
-Since this is a practice exercise of Femcoders' coding school, you should consider this project as closed. However, if you're making yout first steps in coding, you could try to solve this exercise, too. 
+Being a practice exercise of a coding school, you should consider this project closed. However, if you're making yout first steps in coding, you could try to solve this exercise too. 
 
 ## 3. Project's expected result 
 ***
@@ -45,3 +45,14 @@ You can report bugs by creating an "issue" on GitHub.
 ## Our Team
 ***
 ##### This is our team: 
+
+<p> <a href="https://github.com/BSN-Asumiko">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> **Ekaterina**</a></p>
+<p> <a href="https://github.com/GabyRosas">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> **Gabriela**</a></p>
+<p> <a href="https://github.com/loren-2">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> **Lorena**</a></p>
+<p> <a href="https://github.com/LauraGDev">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> **Laura**</a></p>
+<p> <a href="https://github.com/castellanorn">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> **Rosse**</a></p>
