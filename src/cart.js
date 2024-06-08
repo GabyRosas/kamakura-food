@@ -48,7 +48,7 @@ function createCartProduct (id, name, price) {
     
     plusButton.innerText = "+";
     plusButton.onclick = function (e) {
-            changeQuantity(e, newItem)
+            changeQuantity(newItem, plusButton.innerText)
         };
     const quantity = document.createElement("p");
     quantity.innerText = "1";
@@ -57,7 +57,7 @@ function createCartProduct (id, name, price) {
     const minusButton = document.createElement("button");
     minusButton.innerText = "-";
     minusButton.onclick = function (e) {
-            changeQuantity(e, newItem)
+            changeQuantity(newItem, minusButton.innerText)
         };
 
     cartProductsContainer.appendChild(cartProductContainer);
@@ -79,17 +79,14 @@ export function addToCart (id, name, price) {
     } else if (positionThisProductInCart < 0) {
         createCartProduct(id, name, price)
     } else {
-        cart[positionThisProductInCart].quantity++;
-        let thisProductContainer = cartProductsContainer.children[positionThisProductInCart+1];
-        updateQuantity(cart[positionThisProductInCart].quantity, thisProductContainer);
+        changeQuantity(cart[positionThisProductInCart],"+")
     }
 }
 
-function changeQuantity(e, item) {
-    let operator = e.target.innerText;
+function changeQuantity(item, operator) {
     item.quantity = calcQuantity(item, operator);
     if (item.quantity <= 0) {
-        deleteFromCart(e.target)
+        deleteFromCart(item.id)
     } else {
         let positionThisProductInCart = cart.findIndex((prod) => prod.id == item.id) + 1;
         let thisProductContainer = cartProductsContainer.children[positionThisProductInCart];
@@ -122,11 +119,4 @@ function updateTotal(price, operator) {
     // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
 }
 
-function subTotals(price, subtotal, operator) {
-    if (operator == "+") {
-        return subtotal + price;
-    }  else {
-        return subtotal - price;
-    }  
-}
 export { changeQuantity, openCart }
