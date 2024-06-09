@@ -152,9 +152,9 @@ function totalAll() {
 function subTotals(price, subtotal, operator) {
     let subTotal;
     if (operator == "+") {
-        subTotal = price + subtotal;
+        subTotal = subtotal + price;
     } else {
-        subTotal = price - subtotal; // Está al revés, debería ser subtotal menos price
+        subTotal = subtotal - price;
     }
     return subTotal;
 }
