@@ -119,7 +119,6 @@ function updateTotal(price, operator) {
     // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
 }
 
-//feature/US36
 
 function totalAll() {
     let total = 0;
@@ -137,5 +136,15 @@ document.getElementById('.receipt-total').innerText = `€${total}`; //corregido
 }
 
 
-export { changeQuantity, openCart, totalAll }
+function subTotals (price, subtotal, operator) {       
+    let subTotal;
+if (operator == '+'){
+    subTotal = price + subtotal;
+   } else {
+    subTotal = price - subtotal; 
+}
+return subTotal;
+}
 
+
+export { changeQuantity, openCart, subTotals, totalAll }
