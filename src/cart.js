@@ -1,21 +1,31 @@
 //DEBE contener las funcionalidades del carrito de compras.
 
-console.log("hi")
-
 const cartProductsContainer = document.getElementById("cart-products");
 const cart = [];
 
-function createCartItem (id, name, price) {
+function openCart() {
+    let showCart = document.getElementById("cart-container");
+    if (showCart.style.display == "flex"){
+    showCart.style.display = "none"
+    } else {
+    showCart.style.display = "flex"
+    }
+};
+
+function createCartItem (id, name, price, subtotal) {
     const cartItem = {
         id,
         name,
         price,
-        quantity: 1
+        quantity: 1,
+        subtotal
     }
     cart.push(cartItem)
+    return cart[cart.length-1]
 }
 
 function createCartProduct (id, name, price) {
+    let newItem = createCartItem(id, name, price, price);
     const cartProductContainer = document.createElement("div");
     cartProductContainer.className = "cart-container";
     const closeButton = document.createElement("button");
@@ -25,7 +35,7 @@ function createCartProduct (id, name, price) {
     closeImage.alt = "close";
     closeButton.onclick = function (e) {
         deleteCartItem(id)
-        };
+    };
 
     const textContainer = document.createElement("div");
     textContainer.className = "text-container";
@@ -38,8 +48,7 @@ function createCartProduct (id, name, price) {
     
     plusButton.innerText = "+";
     plusButton.onclick = function (e) {
-        console.log("sumado")
-        //Aqui va la funcion de sumar
+            changeQuantity(newItem, plusButton.innerText)
         };
     const quantity = document.createElement("p");
     quantity.innerText = "1";
@@ -48,8 +57,7 @@ function createCartProduct (id, name, price) {
     const minusButton = document.createElement("button");
     minusButton.innerText = "-";
     minusButton.onclick = function (e) {
-        console.log("restado")
-        //Aqui va la funcion de restar
+            changeQuantity(newItem, minusButton.innerText)
         };
 
     cartProductsContainer.appendChild(cartProductContainer);
@@ -60,24 +68,17 @@ function createCartProduct (id, name, price) {
 
     cartProductName.innerText = name;
     cartProductPrice.innerText = `${price} €`;
-
-    createCartItem(id, name, price);
-
 }
-
-
 export function addToCart (id, name, price) {
     let startText = document.getElementById('cart-products').children[0];
     startText.style.display = "none";
-
     let positionThisProductInCart = cart.findIndex((value) => value.id == id);
     if (cart.length <= 0) {
         createCartProduct(id, name, price)
     } else if (positionThisProductInCart < 0) {
         createCartProduct(id, name, price)
     } else {
-     // llamar la funcion de aumentar
-        console.log("works")
+        changeQuantity(cart[positionThisProductInCart],"+")
     }
 }
 
@@ -88,11 +89,74 @@ function deleteCartItem (id) {
 
     cart.splice(positionThisProductInCart, 1);
     cartProductsContainer.removeChild(cartProductContainer);
-
+    
     if (cart.length == 0) {
-        
-    startText.style.display = "block";
+      startText.style.display = "block";
     }
-
 }
 
+
+function changeQuantity(item, operator) {
+    item.quantity = calcQuantity(item, operator);
+    if (item.quantity <= 0) {
+        deleteFromCart(item.id)
+    } else {
+        let positionThisProductInCart = cart.findIndex((prod) => prod.id == item.id) + 1;
+        let thisProductContainer = cartProductsContainer.children[positionThisProductInCart];
+        item.subtotal = subTotals(item.price, item.subtotal, operator);
+        updateSubtotal(item.subtotal, thisProductContainer);
+        updateQuantity(item.quantity, thisProductContainer);
+        updateTotal(item.price, operator);
+    }
+}
+
+function calcQuantity(item, operator) {
+    if (operator == "+") {
+        item.quantity++;
+    } else {
+        item.quantity--;
+    }
+    return item.quantity;
+}
+
+function updateSubtotal(subtotal, container) {
+    container.querySelector('h5').innerText = `${subtotal} €`;
+}
+
+function updateQuantity(quantity, container) {
+    container.querySelector('.quantity').innerText = quantity;
+}
+
+function updateTotal(price, operator) {
+    //TODO: le llega el precio del producto que se ha eliminado o añadido y el operador para saber si se suma o se resta
+    // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
+}
+
+function totalAll() {
+    let total = 0;
+    const items = document.querySelectorAll('.receipt-price');
+
+    items.forEach(item => {
+      const priceText = item.querySelector('h5').innerText;
+      const price = parseFloat(priceText.replace('€', '')); //o variable recibida
+      const quantityTex = item.querySelector('p').innerText;
+      const quantity = parseInt(quantityTex.split(': ')[1]); // o variable recibida
+      total += price * quantity;
+    });
+  
+document.getElementById('.receipt-total').innerText = `€${total}`; //corregido el error innerText
+}
+
+
+function subTotals (price, subtotal, operator) {       
+    let subTotal;
+if (operator == '+'){
+    subTotal = price + subtotal;
+   } else {
+    subTotal = price - subtotal; 
+}
+return subTotal;
+}
+
+
+export { changeQuantity, openCart, subTotals, totalAll }
