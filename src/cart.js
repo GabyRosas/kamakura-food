@@ -1,4 +1,5 @@
 //DEBE contener las funcionalidades del carrito de compras.
+
 const cartProductsContainer = document.getElementById("cart-products");
 const cart = [];
 
@@ -120,5 +121,15 @@ function updateTotal(price, operator) {
 }
 
 
+function subTotals (price, subtotal, operator) {       
+    let subTotal;
+if (operator == '+'){
+    subTotal = price + subtotal;
+   } else {
+    subTotal = price - subtotal; 
+}
+return subTotal;
+}
 
-export { changeQuantity, openCart }
+
+export { changeQuantity, openCart, subTotals }
