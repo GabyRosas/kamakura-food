@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
 @import './cart.css';
+@import './modal.css';
 :root {
     --font-main: 'PT Sans', sans-serif;
     --color-main: #fc3232;
