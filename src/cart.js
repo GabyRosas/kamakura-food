@@ -70,7 +70,6 @@ function createCartProduct (id, name, price) {
     cartProductName.innerText = name;
     cartProductPrice.innerText = `${price} €`;
 }
-
 export function addToCart (id, name, price) {
     let startText = document.getElementById('cart-products').children[0];
     startText.style.display = "none";
@@ -121,6 +120,22 @@ function updateTotal(price, operator) {
 }
 
 
+function totalAll() {
+    let total = 0;
+    const items = document.querySelectorAll('.receipt-price');
+
+    items.forEach(item => {
+      const priceText = item.querySelector('h5').innerText;
+      const price = parseFloat(priceText.replace('€', '')); //o variable recibida
+      const quantityTex = item.querySelector('p').innerText;
+      const quantity = parseInt(quantityTex.split(': ')[1]); // o variable recibida
+      total += price * quantity;
+    });
+  
+document.getElementById('.receipt-total').innerText = `€${total}`; //corregido el error innerText
+}
+
+
 function subTotals (price, subtotal, operator) {       
     let subTotal;
 if (operator == '+'){
@@ -132,4 +147,4 @@ return subTotal;
 }
 
 
-export { changeQuantity, openCart, subTotals }
+export { changeQuantity, openCart, subTotals, totalAll }
