@@ -119,21 +119,23 @@ function updateTotal(price, operator) {
     // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
 }
 
-ResultTotal = Element.getElementById("receipt-total");
+//feature/US36
 
 function totalAll() {
-    // Recorremos el array del carrito
-    return cart.reduce((total, item) => {
-        // De cada elemento obtenemos su precio
-        const miItem = filters.filter((itemBD) => {
-            return itemBD.id === parseInt(item);
-        });
-        // Los sumamos al total
-        return total + miItem[0].price;
-    }, 0).toFixed(2);
-    Element.innerHTML = total;
+    let total = 0;
+    const items = document.querySelectorAll('.receipt-price');
+
+    items.forEach(item => {
+      const priceText = item.querySelector('h5').innerText;
+      const price = parseFloat(priceText.replace('€', '')); //o variable recibida
+      const quantityTex = item.querySelector('p').innerText;
+      const quantity = parseInt(quantityTex.split(': ')[1]); // o variable recibida
+      total += price * quantity;
+    });
+  
+document.getElementById('.receipt-total').innerText = Total: €${total};
 }
+totalAll()
 
-
-export { changeQuantity, openCart }
+export { changeQuantity, openCart, totalAll }
 
