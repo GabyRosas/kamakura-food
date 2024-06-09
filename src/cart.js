@@ -1,5 +1,7 @@
 //DEBE contener las funcionalidades del carrito de compras.
 
+import { filters } from "../assets/data/data";
+
 console.log("hi")
 
 const cartProductsContainer = document.getElementById("cart-products");
@@ -47,4 +49,17 @@ export function addToCart (id, name, price) {
     }
 }
 
+ResultTotal = Element.getElementById("receipt-total");
 
+function totalAll() {
+    // Recorremos el array del carrito
+    return cart.reduce((total, item) => {
+        // De cada elemento obtenemos su precio
+        const miItem = filters.filter((itemBD) => {
+            return itemBD.id === parseInt(item);
+        });
+        // Los sumamos al total
+        return total + miItem[0].price;
+    }, 0).toFixed(2);
+    Element.innerHTML = total;
+}
