@@ -3,6 +3,7 @@ const receiptTotalElement = document.getElementById('receipt-total'); //va con l
 const cartTotalElement = document.getElementById('cart-total'); //va con la funcion updateTotal
 const cartProductsContainer = document.getElementById("cart-products");
 const cart = [];
+let total = 0;
 
 function openCart() {
     let showCart = document.getElementById("cart-container");
@@ -81,6 +82,7 @@ export function addToCart (id, name, price) {
     } else {
         changeQuantity(cart[positionThisProductInCart],"+")
     }
+    updateTotal(price, "+")
 }
 
 function deleteCartItem (id) {
@@ -129,7 +131,7 @@ function updateQuantity(quantity, container) {
 }
 
 function updateTotal(price, operator) {
-           let total;
+          
         if (operator == '+'){
             total = price + total;
            } else {
@@ -137,7 +139,7 @@ function updateTotal(price, operator) {
         }
         cartTotalElement.innerText = `Total €${total.toFixed(2)}`;
         receiptTotalElement.innerText = `Total: €${total.toFixed(2)}`;
-        //return total;        
+               
 }
 
 
