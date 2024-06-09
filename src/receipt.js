@@ -1,5 +1,5 @@
 //Aquí intenta poner las funcionalidades del recibo
-
+import { cart } from "./cart.js";
 
 let windowReceipt = document.getElementById("receipt-container");
 let windowCart = document.getElementById("products-container");
@@ -7,9 +7,8 @@ let totalCart = document.getElementById("cart-total");
 let productOrder = document.getElementById("receipt-product").firstElementChild;
 let receiptPrice = document.querySelector(".receipt-price");
 let receiptTotal = document.getElementById("receipt-total");
-let redMessage = document.createElement("p");
-windowReceipt.appendChild(redMessage);
-
+let textMessage = document.createElement("p");
+windowReceipt.appendChild(textMessage);
 
 function openReceipt () {
     if ( windowReceipt.style.display === "flex" == false) {
@@ -22,12 +21,10 @@ function openReceipt () {
 };
 
 function showReceipt () {
-    if ( totalCart !== 0  ) {
+    if (cart.length <= 0) {
         productOrder.innerHTML = ("Aún no has escogido tu orden");
         receiptPrice.style.display = "none";
         receiptTotal.innerHTML = ("Total 0.00 €");
-        //redMessage.innerHTML = ("Tu orden esta vacia");
-        //redMessage.style.color = "#fc3232";
     } else {
         productOrder.innerHTML="plato1";
         receiptPrice.firstChild.innerText="Cantidad: ${1}";
@@ -35,7 +32,6 @@ function showReceipt () {
         receiptTotal.innerHTML="Total ${40} €";
     }
 };
-
 
 function openModal () {
     let modal = document.createElement('div');
@@ -63,11 +59,8 @@ function closeModal () {
 function payOrder () {
     console.log("pagado");
     if (cart.length <= 0) {
-        let receiptContainer = document.getElementById("receipt-container");
-        let textMessage = document.createElement("p");
-        textMessage.innerText = "Tu orden está vacia";
+        textMessage.innerHTML = "Tu orden está vacia";
         textMessage.style.color = "#fc3232";
-        receiptContainer.appendChild(textMessage);
     } else {
         openModal();
         console.log("modal")
