@@ -34,9 +34,8 @@ function createCartProduct (id, name, price) {
     closeImage.src = "./assets/img/close.svg";
     closeImage.alt = "close";
     closeButton.onclick = function (e) {
-        console.log("eliminado")
-        cartProductContainer.remove();           //listo elimina el plato del carrito
-        };
+        deleteCartItem(id)
+    };
 
     const textContainer = document.createElement("div");
     textContainer.className = "text-container";
@@ -83,6 +82,20 @@ export function addToCart (id, name, price) {
     }
 }
 
+function deleteCartItem (id) {
+    let positionThisProductInCart = cart.findIndex((value) => value.id == id);
+    let cartProductContainer = document.querySelector(".cart-container");
+    let startText = document.getElementById('cart-products').children[0];
+
+    cart.splice(positionThisProductInCart, 1);
+    cartProductsContainer.removeChild(cartProductContainer);
+    
+    if (cart.length == 0) {
+      startText.style.display = "block";
+    }
+}
+
+
 function changeQuantity(item, operator) {
     item.quantity = calcQuantity(item, operator);
     if (item.quantity <= 0) {
@@ -118,8 +131,6 @@ function updateTotal(price, operator) {
     //TODO: le llega el precio del producto que se ha eliminado o añadido y el operador para saber si se suma o se resta
     // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
 }
-
-console.log(cart[0]);
 
 function totalAll() {
     let total = 0;
