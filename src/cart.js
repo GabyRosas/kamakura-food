@@ -34,7 +34,7 @@ function createCartProduct (id, name, price) {
     closeImage.alt = "close";
     closeButton.onclick = function (e) {
         console.log("eliminado")
-        //Aqui va la funcion de eliminar
+        cartProductContainer.remove();           //listo elimina el plato del carrito
         };
 
     const textContainer = document.createElement("div");
@@ -119,6 +119,7 @@ function updateTotal(price, operator) {
     // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
 }
 
+console.log(cart[0]);
 
 
 export { changeQuantity, openCart }
