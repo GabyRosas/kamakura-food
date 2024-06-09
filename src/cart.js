@@ -1,4 +1,6 @@
 //DEBE contener las funcionalidades del carrito de compras.
+const receiptTotalElement = document.getElementById('receipt-total'); //va con la funcion totalAll
+const cartTotalElement = document.getElementById('cart-total'); //va con la funcion totalAll
 const cartProductsContainer = document.getElementById("cart-products");
 const cart = [];
 
@@ -117,8 +119,32 @@ function updateQuantity(quantity, container) {
 function updateTotal(price, operator) {
     //TODO: le llega el precio del producto que se ha eliminado o añadido y el operador para saber si se suma o se resta
     // tenemos que crear una constante en las declaraciones de arriba del todo para que se vaya guardando el total de $$
+    totalAll();
 }
 
 
+function subTotals (price, subtotal, operator) {       
+    let subTotal;
+if (operator == '+'){
+    subTotal = price + subtotal;
+   } else {
+    subTotal = price - subtotal; 
+}
+return subTotal;
+}
 
-export { changeQuantity, openCart }
+function totalAll(price, operator) {
+    let total;
+    if (operator == '+'){
+        total = price + total;
+       } else {
+        total = price - total; 
+    }
+    cartTotalElement.innerText = `Total €${total.toFixed(2)}`;
+    receiptTotalElement.innerText = `Total: €${total.toFixed(2)}`;
+    //return total;
+}
+  
+
+
+export { changeQuantity, openCart, subTotals, totalAll }
