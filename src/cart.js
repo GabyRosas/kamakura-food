@@ -133,7 +133,7 @@ function totalAll() {
       total += price * quantity;
     });
   
-document.getElementById('.receipt-total').textContent = `${total} €`; //normalmente es con.innerText pero me manda error 
+document.getElementById('.receipt-total').innerText = `€${total}`; //corregido el error innerText
 }
 
 
