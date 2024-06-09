@@ -82,12 +82,12 @@ export function addToCart (id, name, price) {
 }
 
 function deleteCartItem (id) {
-    let positionThisProductInCart = cart.findIndex((value) => value.id == id);
-    let cartProductContainer = document.querySelector(".cart-container");
-    let startText = document.getElementById('cart-products').children[0];
 
-    cart.splice(positionThisProductInCart, 1);
-    cartProductsContainer.removeChild(cartProductContainer);
+    let positionThisProductInCart = cart.findIndex((prod) => prod.id == id) + 1;
+    let thisProductContainer = cartProductsContainer.children[positionThisProductInCart];
+    cartProductsContainer.removeChild(thisProductContainer);
+    
+    cart.splice((positionThisProductInCart - 1), 1);
 
     if (cart.length == 0) {
         
