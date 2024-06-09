@@ -133,9 +133,9 @@ function totalAll() {
       total += price * quantity;
     });
   
-document.getElementById('.receipt-total').innerText = Total: €${total};
+document.getElementById('.receipt-total').textContent = `${total} €`; //normalmente es con.innerText pero me manda error 
 }
-totalAll()
+
 
 export { changeQuantity, openCart, totalAll }
 
