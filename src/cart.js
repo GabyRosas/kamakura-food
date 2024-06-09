@@ -1,32 +1,32 @@
 //DEBE contener las funcionalidades del carrito de compras.
-const receiptTotalElement = document.getElementById('receipt-total'); //va con la funcion updateTotal
-const cartTotalElement = document.getElementById('cart-total'); //va con la funcion updateTotal
+const receiptTotalElement = document.getElementById("receipt-total"); //va con la funcion updateTotal
+const cartTotalElement = document.getElementById("cart-total"); //va con la funcion updateTotal
 const cartProductsContainer = document.getElementById("cart-products");
 const cart = [];
 let total = 0;
 
 function openCart() {
     let showCart = document.getElementById("cart-container");
-    if (showCart.style.display == "flex"){
-    showCart.style.display = "none"
+    if (showCart.style.display == "flex") {
+        showCart.style.display = "none";
     } else {
-    showCart.style.display = "flex"
+        showCart.style.display = "flex";
     }
-};
+}
 
-function createCartItem (id, name, price, subtotal) {
+function createCartItem(id, name, price, subtotal) {
     const cartItem = {
         id,
         name,
         price,
         quantity: 1,
-        subtotal
-    }
-    cart.push(cartItem)
-    return cart[cart.length-1]
+        subtotal,
+    };
+    cart.push(cartItem);
+    return cart[cart.length - 1];
 }
 
-function createCartProduct (id, name, price) {
+function createCartProduct(id, name, price) {
     let newItem = createCartItem(id, name, price, price);
     const cartProductContainer = document.createElement("div");
     cartProductContainer.className = "cart-container";
@@ -36,22 +36,22 @@ function createCartProduct (id, name, price) {
     closeImage.src = "./assets/img/close.svg";
     closeImage.alt = "close";
     closeButton.onclick = function (e) {
-        deleteCartItem(id)
+        deleteCartItem(id);
     };
 
     const textContainer = document.createElement("div");
     textContainer.className = "text-container";
     const cartProductName = document.createElement("h3");
-    const cartProductPrice =  document.createElement("h5");
+    const cartProductPrice = document.createElement("h5");
 
     const quantityContainer = document.createElement("div");
     quantityContainer.className = "quantity-container";
     const plusButton = document.createElement("button");
-    
+
     plusButton.innerText = "+";
     plusButton.onclick = function (e) {
-            changeQuantity(newItem, plusButton.innerText)
-        };
+        changeQuantity(newItem, plusButton.innerText);
+    };
     const quantity = document.createElement("p");
     quantity.innerText = "1";
     quantity.className = "quantity";
@@ -59,8 +59,8 @@ function createCartProduct (id, name, price) {
     const minusButton = document.createElement("button");
     minusButton.innerText = "-";
     minusButton.onclick = function (e) {
-            changeQuantity(newItem, minusButton.innerText)
-        };
+        changeQuantity(newItem, minusButton.innerText);
+    };
 
     cartProductsContainer.appendChild(cartProductContainer);
     cartProductContainer.append(closeButton, textContainer, quantityContainer);
@@ -71,41 +71,42 @@ function createCartProduct (id, name, price) {
     cartProductName.innerText = name;
     cartProductPrice.innerText = `${price} €`;
 }
-export function addToCart (id, name, price) {
-    let startText = document.getElementById('cart-products').children[0];
+export function addToCart(id, name, price) {
+    let startText = document.getElementById("cart-products").children[0];
     startText.style.display = "none";
     let positionThisProductInCart = cart.findIndex((value) => value.id == id);
     if (cart.length <= 0) {
-        createCartProduct(id, name, price)
+        createCartProduct(id, name, price);
     } else if (positionThisProductInCart < 0) {
-        createCartProduct(id, name, price)
+        createCartProduct(id, name, price);
     } else {
-        changeQuantity(cart[positionThisProductInCart],"+")
+        changeQuantity(cart[positionThisProductInCart], "+");
     }
     updateTotal(price, "+")
 }
 
-function deleteCartItem (id) {
-    let positionThisProductInCart = cart.findIndex((value) => value.id == id);
-    let cartProductContainer = document.querySelector(".cart-container");
-    let startText = document.getElementById('cart-products').children[0];
+function deleteCartItem(id) {
+    let positionThisProductInCart = cart.findIndex((prod) => prod.id == id) + 1;
+    let thisProductContainer =
+        cartProductsContainer.children[positionThisProductInCart];
+    cartProductsContainer.removeChild(thisProductContainer);
 
-    cart.splice(positionThisProductInCart, 1);
-    cartProductsContainer.removeChild(cartProductContainer);
-    
+    cart.splice(positionThisProductInCart - 1, 1);
+
     if (cart.length == 0) {
-      startText.style.display = "block";
+        startText.style.display = "block";
     }
 }
-
 
 function changeQuantity(item, operator) {
     item.quantity = calcQuantity(item, operator);
     if (item.quantity <= 0) {
-        deleteFromCart(item.id)
+        deleteCartItem(item.id);
     } else {
-        let positionThisProductInCart = cart.findIndex((prod) => prod.id == item.id) + 1;
-        let thisProductContainer = cartProductsContainer.children[positionThisProductInCart];
+        let positionThisProductInCart =
+            cart.findIndex((prod) => prod.id == item.id) + 1;
+        let thisProductContainer =
+            cartProductsContainer.children[positionThisProductInCart];
         item.subtotal = subTotals(item.price, item.subtotal, operator);
         updateSubtotal(item.subtotal, thisProductContainer);
         updateQuantity(item.quantity, thisProductContainer);
@@ -123,35 +124,33 @@ function calcQuantity(item, operator) {
 }
 
 function updateSubtotal(subtotal, container) {
-    container.querySelector('h5').innerText = `${subtotal} €`;
+    container.querySelector("h5").innerText = `${subtotal} €`;
 }
 
 function updateQuantity(quantity, container) {
-    container.querySelector('.quantity').innerText = quantity;
+    container.querySelector(".quantity").innerText = quantity;
 }
 
 function updateTotal(price, operator) {
-          
+         
         if (operator == '+'){
             total = price + total;
            } else {
             total = total - price; 
         }
         cartTotalElement.innerText = `Total €${total.toFixed(2)}`;
-        receiptTotalElement.innerText = `Total: €${total.toFixed(2)}`;
-               
+        receiptTotalElement.innerText = `Total: €${total.toFixed(2)}`;              
+
 }
 
-
-function subTotals (price, subtotal, operator) {       
+function subTotals(price, subtotal, operator) {
     let subTotal;
-if (operator == '+'){
-    subTotal = price + subtotal;
-   } else {
-    subTotal = subtotal - price; 
-}
-return subTotal;
+    if (operator == "+") {
+        subTotal = price + subtotal;
+    } else {
+        subTotal = subtotal - price;
+    }
+    return subTotal;
 }
 
-
-export { changeQuantity, openCart, subTotals, updateTotal }
+export { changeQuantity, openCart, subTotals, updateTotal };
