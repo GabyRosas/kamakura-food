@@ -4,7 +4,7 @@
 let windowReceipt = document.getElementById("receipt-container");
 let windowCart = document.getElementById("products-container");
 let totalCart = document.getElementById("cart-total");
-let emptyMessage = document.getElementById("receipt-product").firstElementChild;
+let productOrder = document.getElementById("receipt-product").firstElementChild;
 let receiptPrice = document.querySelector(".receipt-price");
 let receiptTotal = document.getElementById("receipt-total");
 let redMessage = document.createElement("p");
@@ -21,15 +21,21 @@ function openReceipt () {
     }
 };
 
-function emptyCart () {
-    if ( totalCart = "0" ) {
-    emptyMessage.innerHTML = ("Aún no has escogido tu orden");
-    receiptPrice.style.display = "none";
-    receiptTotal.innerHTML = ("Total 0.00 €");
-    redMessage.innerHTML = ("Tu orden esta vacia");
-    redMessage.style.color = "red";
+function showReceipt () {
+    if ( totalCart !== 0  ) {
+        productOrder.innerHTML = ("Aún no has escogido tu orden");
+        receiptPrice.style.display = "none";
+        receiptTotal.innerHTML = ("Total 0.00 €");
+        //redMessage.innerHTML = ("Tu orden esta vacia");
+        //redMessage.style.color = "#fc3232";
+    } else {
+        productOrder.innerHTML="plato1";
+        receiptPrice.firstChild.innerText="Cantidad: ${1}";
+        receiptPrice.lastChild.innerHTML="Subtotal ${23} €";
+        receiptTotal.innerHTML="Total ${40} €";
     }
-}
+};
+
 
 function openModal () {
     let modal = document.createElement('div');
@@ -68,5 +74,6 @@ function payOrder () {
     }
 }
 
-export { openReceipt, emptyCart, payOrder }
+
+export { openReceipt, showReceipt, payOrder }
 

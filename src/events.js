@@ -1,8 +1,7 @@
 //Intenta separar los eventos en este archivo.
 import { showButtons, addProductContainer } from "./menu.js";
 import { activateFilter } from "./searcher.js";
-import {openReceipt, emptyCart} from "./receipt.js";
-import { payOrder } from "./receipt.js";
+import {openReceipt, showReceipt, payOrder} from "./receipt.js";
 import { openCart, changeQuantity } from "./cart.js";
 import { products } from "../assets/data/data.js"
 
@@ -34,7 +33,7 @@ function addCartEvent(){
 function addReceiptEvent() {
     buttonProceedPay.addEventListener("click", openReceipt);
     buttonClose.addEventListener("click", openReceipt);
-    buttonProceedPay.addEventListener("click", emptyCart);
+    buttonProceedPay.addEventListener("click", showReceipt);
 }
 
 function addPayButtonEvent() {
