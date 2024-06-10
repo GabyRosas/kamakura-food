@@ -29,6 +29,9 @@ Being a practice exercise of a coding school, you should consider this project c
 This is how the sushi ecommerce should look like: 
 [Kamakura Food](https://github.com/FemCoders/js-kamakura-food/assets/73828751/3a7a8a48-8f50-4c14-92c6-34a8eebbdcde)
 
+And this is our website deployed on Netlify:
+[Kamakura Food](https://kamakurafood.netlify.app/)
+
 ## 4. Technologies
 ***
 A list of the technologies used in the project:
