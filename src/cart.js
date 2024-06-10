@@ -31,7 +31,7 @@ function createCartProduct(id, name, price) {
     const closeButton = document.createElement("button");
     closeButton.className = "close-button";
     const closeImage = document.createElement("img");
-    closeImage.src = "./assets/img/close.svg";
+    closeImage.src = "/assets/img/close.svg";
     closeImage.alt = "close";
     closeButton.onclick = function (e) {
         deleteCartItem(id);

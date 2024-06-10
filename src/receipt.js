@@ -26,8 +26,6 @@ function showReceipt () {
         productOrder.innerHTML = ("Aún no has escogido tu orden");
         receiptPrice.style.display = "none";
         receiptTotal.innerHTML = ("Total 0.00 €");
-        //redMessage.innerHTML = ("Tu orden esta vacia");
-        //redMessage.style.color = "#fc3232";
     } else {
         productOrder.innerHTML="plato1";
         receiptPrice.firstChild.innerText="Cantidad: ${1}";
@@ -42,10 +40,10 @@ function openModal () {
     let body = document.querySelector(".container")
     modal.className = "modal";
     modal.innerHTML = `<div class="modal-content">
-    <button class="close-button" id="close-modal"><img src="./assets/img/close.svg" alt="close"></button>
+    <button class="close-button" id="close-modal"><img src="/assets/img/close.svg" alt="close"></button>
     <h3 class="modal-title">Gracias por tu Compra</h3>
     <p class="modal-text">¡Pedido realizado con éxito, gracias por comprar en Kamakura Food!</p>
-    <img class="image-logo" src="./assets/img/logo.svg" alt="restaurant logo">
+    <img class="image-logo" src="/assets/img/logo.svg" alt="restaurant logo">
     </div>
     `
     body.appendChild(modal);
@@ -61,8 +59,8 @@ function closeModal () {
 }
 
 function payOrder () {
-    console.log("pagado");
-    if (cart.length <= 0) {
+        
+    if (receiptTotal.innerHTML == "Total 0.00 €") {
         let receiptContainer = document.getElementById("receipt-container");
         let textMessage = document.createElement("p");
         textMessage.innerText = "Tu orden está vacia";
@@ -70,10 +68,8 @@ function payOrder () {
         receiptContainer.appendChild(textMessage);
     } else {
         openModal();
-        console.log("modal")
     }
 }
-
 
 export { openReceipt, showReceipt, payOrder }
 
