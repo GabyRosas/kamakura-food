@@ -40,7 +40,7 @@ A list of the technologies used in the project:
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript): Version ES14
 * [NODE.js](https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs/Introduction)
 
-## 6. Bugs' report
+## 5. Bugs' report
 ***
 
 You can report bugs by creating an "issue" on GitHub. 
