@@ -1,4 +1,3 @@
-//Intenta separar los eventos en este archivo.
 import { showButtons, addProductContainer } from "./menu.js";
 import { activateFilter } from "./searcher.js";
 import {openReceipt, showReceipt, payOrder} from "./receipt.js";
@@ -8,7 +7,6 @@ import { products } from "../assets/data/data.js"
 const filters = document.getElementsByClassName("filter");
 let buttonProceedPay= document.getElementById("proceedPay-button");
 let buttonClose= document.getElementById("close-receipt");
-
 
 document.addEventListener('DOMContentLoaded',(event) =>{
     showButtons();

@@ -1,18 +1,13 @@
 import {filters} from "../assets/data/data.js"
 import {addToCart} from "./cart.js"
 
-//DEBE imprimir en pantalla la información de filtros.
-
-//DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
-
 export const allProductsContainer = document.getElementById("products");
-const filtersContainer = document.querySelector('.filters-container'); //contenedor de los botones
+const filtersContainer = document.querySelector('.filters-container');
 const originalButton = filtersContainer.querySelector('.filter'); 
 
 function addProductContainer (array) {
     emptyProductsContainer();
     for (let i = 0; i < array.length; i++) {
-
         const productContainer = document.createElement("div");
         productContainer.className = "product-container";
         const productNameContainer = document.createElement("h3");
@@ -26,7 +21,6 @@ function addProductContainer (array) {
         addButton.onclick = function (e) {
             addToCart(array[i].id, array[i].name, array[i].price)
         };
-
         allProductsContainer.appendChild(productContainer);
         productContainer.appendChild(productNameContainer);
         productContainer.appendChild(productDescriptionContainer);
@@ -53,6 +47,5 @@ function showButtons() {
         filtersContainer.appendChild(newButton);
     }
 } 
-
 
 export { addProductContainer, showButtons }
