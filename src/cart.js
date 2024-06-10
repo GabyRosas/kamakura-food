@@ -1,3 +1,4 @@
+
 const cartTotalElement = document.getElementById("cart-total");
 const cartProductsContainer = document.getElementById("cart-products");
 const cart = [];
@@ -37,6 +38,7 @@ function createCartProduct(id, name, price) {
         deleteCartItem(id);
     };
 
+
     const textContainer = document.createElement("div");
     textContainer.className = "text-container";
     const cartProductName = document.createElement("h3");
@@ -69,6 +71,7 @@ function createCartProduct(id, name, price) {
     cartProductName.innerText = name;
     cartProductPrice.innerText = `${price} €`;
 }
+
 export function addToCart(id, name, price) {
     let startText = document.getElementById("cart-products").children[0];
     startText.style.display = "none";
@@ -131,7 +134,6 @@ function updateQuantity(quantity, container) {
     container.querySelector(".quantity").innerText = quantity;
 }
 
-
 function updateTotal(price, operator) {
     if (operator == '+'){
         total = price + total;
@@ -153,3 +155,4 @@ function subTotals(price, subtotal, operator) {
 
 export { changeQuantity, openCart, subTotals, updateTotal };
 export { cart, total };
+
