@@ -43,7 +43,7 @@ A list of the technologies used in the project:
 ## 6. Bugs' report
 ***
 
-You can report bugs by creating an "issue" on GitHub. https://nodejs.org/en
+You can report bugs by creating an "issue" on GitHub. 
 
 
 ## Our Team
