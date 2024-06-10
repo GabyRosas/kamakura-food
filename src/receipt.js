@@ -3,13 +3,9 @@ import { cart, total } from "./cart.js";
 
 let windowReceipt = document.getElementById("receipt-container");
 let windowCart = document.getElementById("products-container");
-let totalCart = document.getElementById("cart-total");
-let productOrder = document.getElementById("receipt-product");
-let receiptPrice = document.querySelector(".receipt-price");
 let receiptTotalElement = document.getElementById("receipt-total");
 
 
-let product;
 
 function openReceipt () {
     if ( windowReceipt.style.display === "flex" == false) {
@@ -23,8 +19,9 @@ function openReceipt () {
 
 function showReceipt () {
     if (cart.length <= 0) {
-        productOrder.firstChild.innerHTML = ("Aún no has escogido tu orden");
-        receiptPrice.style.display = "none";
+        let productOrder = document.createElement("h3");
+        productOrder.innerHTML = "Aún no has escogido tu orden";
+        windowReceipt.insertBefore(productOrder, receiptTotalElement);
         receiptTotalElement.innerHTML = ("Total 0.00 €");
     } else {
         for (let product of cart) {
@@ -67,7 +64,7 @@ function closeModal () {
 
 function payOrder () {    
 
-    if (receiptTotalElement.innerText == "Total: €") {
+    if (receiptTotalElement.innerText == "Total 0.00 €") {
         let textMessage = document.createElement("p");
         textMessage.innerText = "Tu orden está vacia";
         textMessage.style.color = "#fc3232";
