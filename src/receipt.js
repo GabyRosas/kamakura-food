@@ -67,7 +67,7 @@ function closeModal () {
 
 function payOrder () {    
 
-    if (receiptTotalElement.innerText == "Total 0.00 €") {
+    if (receiptTotalElement.innerText == "Total: €") {
         let textMessage = document.createElement("p");
         textMessage.innerText = "Tu orden está vacia";
         textMessage.style.color = "#fc3232";
