@@ -1,14 +1,16 @@
 //Aquí intenta poner las funcionalidades del recibo
-import { cart } from "./cart.js";
+import { cart, total } from "./cart.js";
 
 let windowReceipt = document.getElementById("receipt-container");
 let windowCart = document.getElementById("products-container");
 let totalCart = document.getElementById("cart-total");
-let productOrder = document.getElementById("receipt-product").firstElementChild;
+let productOrder = document.getElementById("receipt-product");
 let receiptPrice = document.querySelector(".receipt-price");
-let receiptTotal = document.getElementById("receipt-total");
+let receiptTotalElement = document.getElementById("receipt-total");
 let textMessage = document.createElement("p");
 windowReceipt.appendChild(textMessage);
+
+let product;
 
 function openReceipt () {
     if ( windowReceipt.style.display === "flex" == false) {
@@ -22,14 +24,22 @@ function openReceipt () {
 
 function showReceipt () {
     if (cart.length <= 0) {
-        productOrder.innerHTML = ("Aún no has escogido tu orden");
+        productOrder.firstChild.innerHTML = ("Aún no has escogido tu orden");
         receiptPrice.style.display = "none";
         receiptTotal.innerHTML = ("Total 0.00 €");
     } else {
-        productOrder.innerHTML="plato1";
-        receiptPrice.firstChild.innerText="Cantidad: ${1}";
-        receiptPrice.lastChild.innerHTML="Subtotal ${23} €";
-        receiptTotal.innerHTML="Total ${40} €";
+        for (let product of cart) {
+            let item=document.createElement("div");
+            item.className="receipt-product";
+            item.innerHTML=`            
+            <h3>${product.name}</h3> 
+            <div class="receipt-price"> 
+            <p>Cantidad: ${product.quantity}</p> 
+            <h5>Subtotal: €${product.subtotal.toFixed(2)}</h5> 
+            </div> `
+            windowReceipt.insertBefore(item, receiptTotalElement);
+            }
+        receiptTotalElement.innerText = `Total: €${total.toFixed(2)}`; 
     }
 };
 
@@ -69,4 +79,3 @@ function payOrder () {
 
 
 export { openReceipt, showReceipt, payOrder }
-

@@ -131,6 +131,7 @@ function updateQuantity(quantity, container) {
     container.querySelector(".quantity").innerText = quantity;
 }
 
+
 function updateTotal(price, operator) {
          
         if (operator == '+'){
@@ -154,3 +155,4 @@ function subTotals(price, subtotal, operator) {
 }
 
 export { changeQuantity, openCart, subTotals, updateTotal };
+export { cart, total };
