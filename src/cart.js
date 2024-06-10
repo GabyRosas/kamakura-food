@@ -77,24 +77,27 @@ export function addToCart(id, name, price) {
     let positionThisProductInCart = cart.findIndex((value) => value.id == id);
     if (cart.length <= 0) {
         createCartProduct(id, name, price);
+        updateTotal(price, "+");
     } else if (positionThisProductInCart < 0) {
         createCartProduct(id, name, price);
+        updateTotal(price, "+");
     } else {
         changeQuantity(cart[positionThisProductInCart], "+");
-    }
-    updateTotal(price, "+")
+    };
 }
 
 function deleteCartItem(id) {
+    let startText = document.getElementById("cart-products").children[0];
     let positionThisProductInCart = cart.findIndex((prod) => prod.id == id) + 1;
-    let thisProductContainer =
-        cartProductsContainer.children[positionThisProductInCart];
+    let thisProductContainer = cartProductsContainer.children[positionThisProductInCart];
+    console.log(cart[positionThisProductInCart - 1].subtotal)
+    updateTotal(cart[positionThisProductInCart - 1].subtotal, "-");
     cartProductsContainer.removeChild(thisProductContainer);
-
     cart.splice(positionThisProductInCart - 1, 1);
-
     if (cart.length == 0) {
         startText.style.display = "block";
+        cartTotalElement.innerText = "Total €";
+        total = 0;
     }
 }
 
@@ -124,7 +127,7 @@ function calcQuantity(item, operator) {
 }
 
 function updateSubtotal(subtotal, container) {
-    container.querySelector("h5").innerText = `${subtotal} €`;
+    container.querySelector("h5").innerText = `${subtotal.toFixed(2)} €`;
 }
 
 function updateQuantity(quantity, container) {
@@ -132,15 +135,12 @@ function updateQuantity(quantity, container) {
 }
 
 function updateTotal(price, operator) {
-         
-        if (operator == '+'){
-            total = price + total;
-           } else {
-            total = total - price; 
-        }
-        cartTotalElement.innerText = `Total €${total.toFixed(2)}`;
-        receiptTotalElement.innerText = `Total: €${total.toFixed(2)}`;              
-
+    if (operator == '+'){
+        total = price + total;
+    } else {
+        total = total - price; 
+    }
+    cartTotalElement.innerText = `Total €${total.toFixed(2)}`;
 }
 
 function subTotals(price, subtotal, operator) {
