@@ -7,8 +7,7 @@ let totalCart = document.getElementById("cart-total");
 let productOrder = document.getElementById("receipt-product");
 let receiptPrice = document.querySelector(".receipt-price");
 let receiptTotalElement = document.getElementById("receipt-total");
-let textMessage = document.createElement("p");
-windowReceipt.appendChild(textMessage);
+
 
 let product;
 
@@ -26,7 +25,7 @@ function showReceipt () {
     if (cart.length <= 0) {
         productOrder.firstChild.innerHTML = ("Aún no has escogido tu orden");
         receiptPrice.style.display = "none";
-        receiptTotal.innerHTML = ("Total 0.00 €");
+        receiptTotalElement.innerHTML = ("Total 0.00 €");
     } else {
         for (let product of cart) {
             let item=document.createElement("div");
@@ -67,13 +66,15 @@ function closeModal () {
 }
 
 function payOrder () {    
-    if (receiptTotal.innerHTML == "Total 0.00 €") {
-        let receiptContainer = document.getElementById("receipt-container");
+
+    if (receiptTotalElement.innerText == "Total 0.00 €") {
         let textMessage = document.createElement("p");
         textMessage.innerText = "Tu orden está vacia";
         textMessage.style.color = "#fc3232";
+        windowReceipt.appendChild(textMessage);
     } else {
         openModal();
+
     }
 }
 
