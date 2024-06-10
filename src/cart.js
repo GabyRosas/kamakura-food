@@ -1,6 +1,4 @@
-//DEBE contener las funcionalidades del carrito de compras.
-const receiptTotalElement = document.getElementById("receipt-total"); //va con la funcion updateTotal
-const cartTotalElement = document.getElementById("cart-total"); //va con la funcion updateTotal
+const cartTotalElement = document.getElementById("cart-total");
 const cartProductsContainer = document.getElementById("cart-products");
 const cart = [];
 let total = 0;
@@ -90,7 +88,6 @@ function deleteCartItem(id) {
     let startText = document.getElementById("cart-products").children[0];
     let positionThisProductInCart = cart.findIndex((prod) => prod.id == id) + 1;
     let thisProductContainer = cartProductsContainer.children[positionThisProductInCart];
-    console.log(cart[positionThisProductInCart - 1].subtotal)
     updateTotal(cart[positionThisProductInCart - 1].subtotal, "-");
     cartProductsContainer.removeChild(thisProductContainer);
     cart.splice(positionThisProductInCart - 1, 1);
