@@ -1,4 +1,4 @@
-# Kamakura Food
+# Kamakura Food 🍣🥢
 
 ### Index
 1. General Information
@@ -22,9 +22,9 @@ If you have any questions, feel free to contact us!
 
 ## 2. Project Status
 ***
-Being a practice exercise of a coding school, you should consider this project closed. However, if you're making yout first steps in coding, you could try to solve this exercise too. 
+Being a practice exercise of a coding school, this project is closed. However, if you're making yout first steps in coding, you could try to solve this exercise too. 
 
-## 3. Project's expected result 
+## 3. Project's expected result 🍜
 ***
 This is how the sushi ecommerce should look like: 
 [Kamakura Food](https://github.com/FemCoders/js-kamakura-food/assets/73828751/3a7a8a48-8f50-4c14-92c6-34a8eebbdcde)
@@ -38,11 +38,12 @@ A list of the technologies used in the project:
 * [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5): Version 5.0
 * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS): Version 3.0
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript): Version ES14
+* [NODE.js](https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs/Introduction)
 
 ## 6. Bugs' report
 ***
 
-You can report bugs by creating an "issue" on GitHub.
+You can report bugs by creating an "issue" on GitHub. 
 
 
 ## Our Team
